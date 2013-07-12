@@ -1,51 +1,40 @@
 # -*- coding: utf-8 -*-
 """
-dj-database-url
-~~~~~~~~~~~~~~~
+dj-static
+~~~~~~~~~
 
-.. image:: https://secure.travis-ci.org/kennethreitz/dj-database-url.png?branch=master
-
-This simple Django utility allows you to utilize the
-`12factor <http://www.12factor.net/backing-services>`_ inspired
-``DATABASE_URL`` environment variable to configure your Django application.
-
+This is a simple Django middleware utility that allows you to properly
+serve static assets from production with a WSGI server like Gunicorn.
 
 Usage
 -----
 
-Configure your database in ``settings.py`` from ``DATABASE_URL``::
+Configure your static assets in ``settings.py``::
 
-    DATABASES = {'default': dj_database_url.config()}
+   STATIC_ROOT = 'staticfiles'
+   STATIC_URL = '/static/'
 
-Parse an arbitrary Database URL::
+Then, update your ``wsgi.py`` file to use dj-static::
 
-    DATABASES = {'default': dj_database_url.parse('postgres://...')}
+    from django.core.wsgi import get_wsgi_application
+    from dj_static import StaticCling
 
-Supported databases
--------------------
-
-Support currently exists for PostgreSQL, PostGIS, MySQL and SQLite.
-
-SQLite connects to file based databases. The same URL format is used, omitting
-the hostname, and using the "file" portion as the filename of the database.
-This has the effect of four slashes being present for an absolute file path:
-``sqlite:////full/path/to/your/database/file.sqlite``.
-
+    application = StaticCling(get_wsgi_application())
 
 """
 
 from setuptools import setup
 
 setup(
-    name='dj-database-url',
-    version='0.2.1',
-    url='https://github.com/kennethreitz/dj-database-url',
+    name='dj-static',
+    version='0.0.1',
+    url='https://github.com/kennethreitz/dj-static',
     license='BSD',
     author='Kenneth Reitz',
     author_email='me@kennethreitz.com',
-    description='Use Database URLs in your Django Application.',
+    description='Serve production static files with Django..',
     long_description=__doc__,
-    py_modules=['dj_database_url'],
+    py_modules=['dj_static'],
     zip_safe=False,
     include_package_data=True,
     platforms='any',
