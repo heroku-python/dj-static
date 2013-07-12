@@ -32,10 +32,11 @@ setup(
     license='BSD',
     author='Kenneth Reitz',
     author_email='me@kennethreitz.com',
-    description='Serve production static files with Django..',
+    description='Serve production static files with Django.',
     long_description=__doc__,
     py_modules=['dj_static'],
     zip_safe=False,
+    install_requires=['static'],
     include_package_data=True,
     platforms='any',
     classifiers=[
