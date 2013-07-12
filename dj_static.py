@@ -12,7 +12,7 @@ except ImportError:     # Python 2
 from django.contrib.staticfiles import utils
 
 
-class StaticFilesHandler(WSGIHandler):
+class Cling(WSGIHandler):
     """WSGI middleware that intercepts calls to the static files
     directory, as defined by the STATIC_URL setting, and serves those files.
     """
