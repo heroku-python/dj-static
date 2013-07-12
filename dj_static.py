@@ -24,7 +24,7 @@ class Cling(WSGIHandler):
 
         self.cling = static.Cling(base_dir)
 
-        super(StaticFilesHandler, self).__init__()
+        super(Cling, self).__init__()
 
     def get_base_dir(self):
         return settings.STATIC_ROOT
