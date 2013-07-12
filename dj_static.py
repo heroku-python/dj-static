@@ -5,6 +5,8 @@ import static
 from django.conf import settings
 from django.core.handlers.wsgi import WSGIHandler
 from django.core.handlers.base import get_path_info
+from django.contrib.staticfiles.handlers import StaticFilesHandler as DebugHandler
+
 try:
     from urllib.parse import urlparse
 except ImportError:     # Python 2
@@ -23,6 +25,7 @@ class Cling(WSGIHandler):
         self.base_url = urlparse(self.get_base_url())
 
         self.cling = static.Cling(base_dir)
+        self.debug_cling = DebugHandler(base_dir)
 
         super(Cling, self).__init__()
 
@@ -32,6 +35,10 @@ class Cling(WSGIHandler):
     def get_base_url(self):
         utils.check_settings()
         return settings.STATIC_URL
+
+    @property
+    def debug(self):
+        return settings.DEBUG
 
     def _transpose_environ(self, environ):
         """Translates a given environ to static.Cling's expectations."""
@@ -47,7 +54,14 @@ class Cling(WSGIHandler):
         return path.startswith(self.base_url[2]) and not self.base_url[1]
 
     def __call__(self, environ, start_response):
+        # Hand non-static requests to Django
         if not self._should_handle(get_path_info(environ)):
             return self.application(environ, start_response)
-        environ = self._transpose_environ(environ)
-        return self.cling(environ, start_response)
+
+        # Serve static requests from static.Cling
+        if not self.debug:
+            environ = self._transpose_environ(environ)
+            return self.cling(environ, start_response)
+        # Serve static requests in debug mode from StaticFilesHandler
+        else:
+            return self.debug_cling(environ, start_response)
