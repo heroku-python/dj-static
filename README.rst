@@ -4,6 +4,9 @@ DJ Static
 This is a simple Django middleware utility that allows you to properly
 serve static assets from production with a WSGI server like Gunicorn.
 
+.. image:: http://farm8.staticflickr.com/7387/8907351990_58677d7c35_z.jpg
+
+
 Usage
 -----
 
