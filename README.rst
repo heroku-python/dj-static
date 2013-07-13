@@ -27,6 +27,8 @@ frontend load, you will want to explore using a CDN with
 Usage
 -----
 
+::
+
     $ pip install dj-static
 
 Configure your static assets in ``settings.py``::
