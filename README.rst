@@ -4,11 +4,11 @@ DJ Static
 This is a simple Django middleware utility that allows you to properly
 serve static assets from production with a WSGI server like Gunicorn.
 
-.. image:: http://farm8.staticflickr.com/7387/8907351990_58677d7c35_z.jpg
-
 Django `doesn't recommend <https://docs.djangoproject.com/en/1.2/howto/static-files/>`_
 the production use of its static file server for a number of reasons.
 There exists, however, a lovely WSGI application aptly named `Static <http://lukearno.com/projects/static/>`_.
+
+.. image:: http://farm8.staticflickr.com/7387/8907351990_58677d7c35_z.jpg
 
 It is suitable for the production use of static file serving, unlike Django.
 Enjoy!
