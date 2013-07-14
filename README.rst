@@ -1,4 +1,4 @@
-DJ Static
+DJ-Static
 =========
 
 This is a simple Django middleware utility that allows you to properly
