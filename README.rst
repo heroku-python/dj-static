@@ -44,3 +44,18 @@ Then, update your ``wsgi.py`` file to use dj-static::
     from dj_static import Cling
 
     application = Cling(get_wsgi_application())
+
+File uploads (optional)
+^^^^^^^^^^^^^^^^^^^^^^^
+
+In case you also want to serve media files that were uploaded to ``MEDIA_ROOT``::
+
+    MEDIA_ROOT = 'media'
+    MEDIA_URL = '/media/'
+
+Then again, update your ``wsgi.py`` file::
+
+    from django.core.wsgi import get_wsgi_application
+    from dj_static import Cling, MediaCling
+
+    application = Cling(MediaCling(get_wsgi_application()))
