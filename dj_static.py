@@ -68,9 +68,10 @@ class Cling(WSGIHandler):
 
 
 class MediaCling(Cling):
-    def __init__(self, application, base_dir=None):
-        super(MediaCling, self).__init__(application, base_dir=base_dir)
-        self.debug_cling = self.cling
+
+    def debug_cling(self, environ, start_response):
+        environ = self._transpose_environ(environ)
+        return self.cling(environ, start_response)
 
     def get_base_dir(self):
         return settings.MEDIA_ROOT
