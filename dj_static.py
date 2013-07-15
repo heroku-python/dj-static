@@ -65,3 +65,16 @@ class Cling(WSGIHandler):
         # Serve static requests in debug mode from StaticFilesHandler
         else:
             return self.debug_cling(environ, start_response)
+
+
+class MediaCling(Cling):
+
+    def debug_cling(self, environ, start_response):
+        environ = self._transpose_environ(environ)
+        return self.cling(environ, start_response)
+
+    def get_base_dir(self):
+        return settings.MEDIA_ROOT
+
+    def get_base_url(self):
+        return settings.MEDIA_URL
