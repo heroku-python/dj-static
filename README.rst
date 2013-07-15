@@ -10,7 +10,7 @@ There exists, however, a lovely WSGI application aptly named `Static <http://luk
 
 .. image:: http://farm8.staticflickr.com/7387/8907351990_58677d7c35_z.jpg
 
-"Finally, a super-simple way of serving assets in Django that’ll actually perform well — `@jacobian <https://twitter.com/jacobian/status/356754168075128833>`_"
+"Finally, a super-simple way of serving assets in Django that’ll actually perform well" — `@jacobian <https://twitter.com/jacobian/status/356754168075128833>`_
 
 It is suitable for the production use of static file serving, unlike Django.
 Enjoy!
