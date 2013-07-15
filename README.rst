@@ -13,6 +13,9 @@ There exists, however, a lovely WSGI application aptly named `Static <http://luk
 It is suitable for the production use of static file serving, unlike Django.
 Enjoy!
 
+> Finally, a super-simple way of serving assets in Django that’ll actually perform well — [@jacobian](https://twitter.com/jacobian/status/356754168075128833)
+
+
 Shouldn't I use a CDN?
 ----------------------
 
