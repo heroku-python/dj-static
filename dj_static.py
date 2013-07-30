@@ -42,7 +42,7 @@ class Cling(WSGIHandler):
 
     def _transpose_environ(self, environ):
         """Translates a given environ to static.Cling's expectations."""
-        environ['PATH_INFO'] = environ['PATH_INFO'][len(self.base_url) + 1:]
+        environ['PATH_INFO'] = environ['PATH_INFO'][len(self.base_url[2]) - 1:]
         return environ
 
     def _should_handle(self, path):
