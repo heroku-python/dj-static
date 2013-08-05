@@ -42,7 +42,7 @@ class Cling(WSGIHandler):
 
     def _transpose_environ(self, environ):
         """Translates a given environ to static.Cling's expectations."""
-        environ['PATH_INFO'] = environ['PATH_INFO'][len(self.base_url) + 1:]
+        environ['PATH_INFO'] = environ['PATH_INFO'][len(self.base_url[2]) - 1:]
         return environ
 
     def _should_handle(self, path):
@@ -69,7 +69,12 @@ class Cling(WSGIHandler):
 
 class MediaCling(Cling):
 
-    def debug_cling(self, environ, start_response):
+    def __init__(self, application, base_dir=None):
+        super(MediaCling, self).__init__(application, base_dir=base_dir)
+        # override callable attribute with method
+        self.debug_cling = self._debug_cling
+
+    def _debug_cling(self, environ, start_response):
         environ = self._transpose_environ(environ)
         return self.cling(environ, start_response)
 
