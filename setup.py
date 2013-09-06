@@ -42,7 +42,7 @@ setup(
     long_description=__doc__,
     py_modules=['dj_static'],
     zip_safe=False,
-    install_requires=['static', 'six'],
+    install_requires=['static'],
     include_package_data=True,
     platforms='any',
     classifiers=[
