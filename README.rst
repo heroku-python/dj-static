@@ -6,7 +6,7 @@ serve static assets from production with a WSGI server like Gunicorn.
 
 Django `doesn't recommend <https://docs.djangoproject.com/en/1.5/howto/static-files/#admonition-serving-the-files>`_
 the production use of its static file server for a number of reasons.
-There exists, however, a lovely WSGI application aptly named `Static <http://lukearno.com/projects/static/>`_.
+There exists, however, a lovely WSGI application aptly named `Static <https://pypi.python.org/pypi/static>`_.
 
 .. image:: http://farm8.staticflickr.com/7387/8907351990_58677d7c35_z.jpg
 
