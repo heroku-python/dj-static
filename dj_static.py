@@ -4,7 +4,10 @@ import static
 
 from django.conf import settings
 from django.core.handlers.wsgi import WSGIHandler
-from django.core.handlers.base import get_path_info
+try:
+    from django.core.handlers.base import get_path_info
+except ImportError:
+    from django.core.handlers.wsgi import get_path_info
 from django.contrib.staticfiles.handlers import StaticFilesHandler as DebugHandler
 
 try:
