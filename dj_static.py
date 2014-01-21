@@ -41,7 +41,10 @@ class Cling(WSGIHandler):
         self.base_url = urlparse(self.get_base_url())
 
         self.cling = static.Cling(base_dir)
-        self.debug_cling = DebugHandler(application, base_dir=base_dir)
+        try:
+            self.debug_cling = DebugHandler(application, base_dir=base_dir)
+        except TypeError:
+            self.debug_cling = DebugHandler(application)
 
         super(Cling, self).__init__()
 
