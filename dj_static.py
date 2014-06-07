@@ -16,7 +16,7 @@ try:
     from django.core.handlers.base import get_path_info
 except ImportError:     # django < 1.5
     import sys
-    py3 = sys.version_info[0] == 3 
+    py3 = sys.version_info[0] == 3
     def get_path_info(environ):
         """
         Returns the HTTP request's PATH_INFO as a unicode string.
@@ -34,8 +34,9 @@ class Cling(WSGIHandler):
     """WSGI middleware that intercepts calls to the static files
     directory, as defined by the STATIC_URL setting, and serves those files.
     """
-    def __init__(self, application, base_dir=None):
+    def __init__(self, application, base_dir=None, ignore_debug=False):
         self.application = application
+        self.ignore_debug = ignore_debug
         if not base_dir:
             base_dir = self.get_base_dir()
         self.base_url = urlparse(self.get_base_url())
@@ -78,7 +79,7 @@ class Cling(WSGIHandler):
             return self.application(environ, start_response)
 
         # Serve static requests from static.Cling
-        if not self.debug:
+        if not self.debug or self.ignore_debug:
             environ = self._transpose_environ(environ)
             return self.cling(environ, start_response)
         # Serve static requests in debug mode from StaticFilesHandler
