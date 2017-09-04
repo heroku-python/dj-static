@@ -4,7 +4,7 @@ DJ-Static
 This is a simple Django middleware utility that allows you to properly
 serve static assets from production with a WSGI server like Gunicorn.
 
-.. note:: You should probably use `WhiteNoise <http://whitenoise.evans.io/en/stable/>` instead. It's better software. 
+.. note:: You should probably use `WhiteNoise <http://whitenoise.evans.io/en/stable/>`_ instead. It's better software. 
 
 Django `doesn't recommend <https://docs.djangoproject.com/en/dev/howto/static-files/#admonition-serving-the-files>`_
 the production use of its static file server for a number of reasons.
